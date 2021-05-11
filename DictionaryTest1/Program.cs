@@ -44,7 +44,7 @@ namespace DictionaryTest1
 
         private static void Example2()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }
