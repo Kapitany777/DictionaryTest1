@@ -29,6 +29,10 @@ namespace DictionaryTest1
             Console.WriteLine("Example5");
             Example5();
             Console.WriteLine();
+
+            Console.WriteLine("Example6");
+            Example6();
+            Console.WriteLine();
         }
 
         private static void Example1()
@@ -117,7 +121,7 @@ namespace DictionaryTest1
 
         private static void Example5()
         {
-            var dict4 = new Dictionary<string, string>
+            var dict5 = new Dictionary<string, string>
             {
                 { "key1", "value1" },
                 { "key2", "value2" },
@@ -126,13 +130,42 @@ namespace DictionaryTest1
             };
 
             var list =
-                dict4
+                dict5
                 .Where(pair => pair.Key.EndsWith("1"))
                 .Select(pair => pair.Value)
                 .OrderBy(value => value)
                 .ToList();
 
             list.ForEach(x => Console.WriteLine(x));
+        }
+
+        private static void Example6()
+        {
+            var dict6 = new Dictionary<string, string>
+            {
+                { "key1", "value1" },
+                { "key2", "value2" },
+                { "key11", "value11" },
+                { "key22", "value22" },
+                { "key44", "value1" },
+                { "key55", "value2" }
+            };
+
+            Console.WriteLine("Keys in the dictionary:");
+
+            foreach (var key in dict6.Keys)
+            {
+                Console.WriteLine(key);
+            }
+
+            Console.WriteLine();
+
+            Console.WriteLine("Values in the dictionary:");
+
+            foreach (var value in dict6.Values.Distinct())
+            {
+                Console.WriteLine(value);
+            }
         }
     }
 }
