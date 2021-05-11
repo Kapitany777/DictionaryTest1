@@ -14,11 +14,23 @@ namespace DictionaryTest1
             Example1();
             Console.WriteLine();
 
-            Console.WriteLine("Example1");
+            Console.WriteLine("Example2");
             Example2();
             Console.WriteLine();
+
+            Console.WriteLine("Example3");
+            Example3();
+            Console.WriteLine();
+
+            Console.WriteLine("Example4");
+            Example4();
+            Console.WriteLine();
+
+            Console.WriteLine("Example5");
+            Example5();
+            Console.WriteLine();
         }
-        
+
         private static void Example1()
         {
             var dict1 = new Dictionary<string, string>();
@@ -44,7 +56,83 @@ namespace DictionaryTest1
 
         private static void Example2()
         {
-            
+            var dict2 = new Dictionary<string, string>
+            {
+                { "key1", "value1" },
+                { "key2", "value2" }
+            };
+
+            dict2.Add("key3", "value3");
+            dict2["key4"] = "value4";
+
+            Console.WriteLine($"The count of key - value pairs: {dict2.Count}");
+
+            foreach (var pair in dict2)
+            {
+                Console.WriteLine($"{pair.Key} = {pair.Value}");
+            }
+        }
+
+        private static void Example3()
+        {
+            var dict3 = new Dictionary<string, string>();
+
+            dict3["key1"] = "value1";
+
+            if (dict3.ContainsKey("key1"))
+            {
+                Console.WriteLine($"key1 = {dict3["key1"]}");
+            }
+
+            if (dict3.ContainsKey("key2"))
+            {
+                Console.WriteLine($"key2 = {dict3["key2"]}");
+            }
+
+            string result;
+
+            if (dict3.TryGetValue("key1", out result))
+            {
+                Console.WriteLine($"key1 = {dict3["key1"]}");
+            }
+        }
+
+        private static void Example4()
+        {
+            var dict4 = new Dictionary<string, string>
+            {
+                { "key1", "value1" },
+                { "key2", "value2" }
+            };
+
+            try
+            {
+                Console.WriteLine($"key3 = {dict4["key3"]}");
+            }
+            catch (KeyNotFoundException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private static void Example5()
+        {
+            var dict4 = new Dictionary<string, string>
+            {
+                { "key1", "value1" },
+                { "key2", "value2" },
+                { "key11", "value11" },
+                { "key22", "value22" }
+            };
+
+            var list =
+                dict4
+                .Where(pair => pair.Key.EndsWith("1"))
+                .Select(pair => pair.Value)
+                .OrderBy(value => value)
+                .ToList();
+
+            list.ForEach(x => Console.WriteLine(x));
         }
     }
 }
